@@ -1,0 +1,19 @@
+*{
+	font-family: monospace;
+}
+table{
+	border: solid;
+}
+	thead{
+		background-color: #978D8D;
+	}
+#topicForm{
+	width: 500px;
+	margin-left: 50px;
+}
+	#topicForm input, select, button, label, textarea{
+		display: block;
+	}
+#topicInfo{
+	margin-left: 50px;
+}

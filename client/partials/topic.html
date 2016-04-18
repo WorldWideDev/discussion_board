@@ -1,0 +1,15 @@
+<div ng-controller='TopicController as TC'>
+	<h1><a href="">{{TC.thisTopic._user.name}}</a> posted a topic:</h1>
+	<div id='topicInfo'>
+		<h3>{{TC.thisTopic.name}}</h3>
+		<p>{{TC.thisTopic.desc}}</p>
+	</div>
+	<h2>Post ur answer here...</h2>
+	<textarea ng-model='TC.new_answer.content'></textarea>
+	<button ng-click='TC.createAnswer(TC.thisTopic._id)'>Post</button>
+	<div ng-repeat='a in TC.answers'>
+		<hr>
+		<p><a href="">{{a._user.name}}:</a> {{a.content}}</p>
+		
+	</div>
+</div>

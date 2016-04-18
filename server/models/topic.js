@@ -24,4 +24,12 @@ var TopicSchema = new Schema({
 	}
 })
 
+var CategorySchema = new Schema({
+	name: {
+		type: String
+	}
+})
+
+
 var Topic = mongoose.model('Topic', TopicSchema)
+var Category = mongoose.model('Category', CategorySchema)

@@ -1,0 +1,18 @@
+<html ng-app='myApp'>
+<head>
+	<script type="text/javascript" src='/angular/angular.js'></script>
+	<script type="text/javascript" src='/angular-route/angular-route.js'></script>
+	<script type="text/javascript" src='/static/js/script.js'></script>
+	<script type="text/javascript" src='/static/js/users.js'></script>
+	<script type="text/javascript" src='/static/js/topics.js'></script>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<title>Discussion Board</title>
+</head>
+<body>
+	<div class='container'>
+		<a href="#/login">Login Page</a> | <a href="#/dashboard">Dashboard</a> | <a href="#/topic">Topic</a> | <a href="#/user">User</a>
+		<div ng-view=''></div>
+	</div>
+</body>
+</html>

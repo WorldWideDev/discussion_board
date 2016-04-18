@@ -9,6 +9,10 @@ var UserSchema = new Schema({
 	topics: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Topic'
+	}],
+	answers: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Answers'
 	}]
 })
 

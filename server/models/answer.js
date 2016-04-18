@@ -16,6 +16,10 @@ var AnswerSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	_topic: {
+		type: Schema.Types.ObjectId,
+		ref: 'Topic'
+	},
 	comments: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Comment'
