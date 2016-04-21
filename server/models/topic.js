@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
+var deepPopulate = require('mongoose-deep-populate')(mongoose)
 
 var TopicSchema = new Schema({
 	name: {
@@ -32,4 +33,5 @@ var CategorySchema = new Schema({
 
 
 var Topic = mongoose.model('Topic', TopicSchema)
+TopicSchema.plugin(deepPopulate);
 var Category = mongoose.model('Category', CategorySchema)

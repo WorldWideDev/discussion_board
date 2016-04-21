@@ -1,30 +1,29 @@
-<div ng-controller='TopicController as TC'>
-	<h1>Welcome, {{TC.user.name}}</h1>
-	<table class='table table-bordered'>
-		<thead>
-			<tr>
-				<th>Category</th>
-				<th>Topic</th>
-				<th>User Name</th>
-				<th>Posts</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat='t in TC.topics'>
-				<td>{{t.category}}</td>
-				<td><a href="#/topic/{{t._id}}" ng-click='TC.getOne(t)'>{{t.name}} | {{t._id}}</a></td>
-				<td>{{t._user.name}}</td>
-				<td># OF POSTS</td>
-			</tr>
-		</tbody>
-	</table>
-	<h2>Add a new Topic</h2>
-	<div id='topicForm'>
-		Topic: <input type='text' ng-model='TC.new_topic.name'><br>
-		Description: <br><textarea ng-model='TC.new_topic.desc'></textarea><br>
-		Category: <select ng-model='TC.new_topic.category'>
-					<option ng-repeat='c in TC.categories'>{{c.name}}</option>
-				  </select><br>
-		<button ng-click='TC.create()'>SUP</button>
-	</div>
+<h1>Welcome, {{DC.user.name}}</h1>
+<table class='table table-bordered'>
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Topic</th>
+			<th>User Name</th>
+			<th>Posts</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat='t in DC.topics'>
+			<td>{{t.category}}</td>
+			<td><a href="#/topic/{{t._id}}">{{t.name}} | {{t._id}}</a></td>
+			<td><a href="#/user/{{t._user._id}}">{{t._user.name}}</a></td>
+			<td># OF POSTS</td>
+		</tr>
+	</tbody>
+</table>
+<h2>Add a new Topic</h2>
+<div id='topicForm'>
+	Topic: <input type='text' ng-model='DC.new_topic.name'><br>
+	Description: <br><textarea ng-model='DC.new_topic.desc'></textarea><br>
+	Category: <select ng-model='DC.new_topic.category'>
+				<option ng-repeat='c in DC.categories'>{{c.name}}</option>
+			  </select><br>
+	<button ng-click='DC.create()'>SUP</button>
 </div>
+

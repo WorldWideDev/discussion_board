@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var UserSchema = new Schema({
 	name: {
@@ -13,6 +14,10 @@ var UserSchema = new Schema({
 	answers: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Answers'
+	}],
+	comments: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Comment'
 	}]
 })
 

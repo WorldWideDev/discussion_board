@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Comment = mongoose.model('Comment');
 
 module.exports = (function(){
 	return {
 		index: function(req,res){
 			console.log('in user index method');
-			User.find({}).populate('topics').exec(function (err,users){
-				res.json(users)
+			User.find({_id: req.params.id}).populate('topics', 'answers', 'comments').exec(function (err,user){
+				res.json(user)
 			})
 		},
 		create: function(req,res){
@@ -33,7 +34,7 @@ module.exports = (function(){
 								res.json(err);
 							}else{
 								console.log('added a new user')
-								res.redirect('/users/index')
+								res.json(new_user)
 							}
 						})
 					}
@@ -42,7 +43,7 @@ module.exports = (function(){
 		},
 		getLogged: function(req,res){
 			console.log(req.session.name + ' is logged user')
-			User.find({name: req.session.name}, function (err,user){
+			User.findOne({name: req.session.name}, function (err,user){
 				console.log(user)
 				res.json(user)
 			})

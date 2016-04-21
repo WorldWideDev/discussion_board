@@ -1,4 +1,3 @@
-<div ng-controller='TopicController as TC'>
 	<h1><a href="">{{TC.thisTopic._user.name}}</a> posted a topic:</h1>
 	<div id='topicInfo'>
 		<h3>{{TC.thisTopic.name}}</h3>
@@ -7,9 +6,18 @@
 	<h2>Post ur answer here...</h2>
 	<textarea ng-model='TC.new_answer.content'></textarea>
 	<button ng-click='TC.createAnswer(TC.thisTopic._id)'>Post</button>
-	<div ng-repeat='a in TC.answers'>
+	<div ng-repeat='a in TC.answers' class='answerBox'>
 		<hr>
-		<p><a href="">{{a._user.name}}:</a> {{a.content}}</p>
-		
+		<h4><a href="">{{a._user.name}}:</a> {{a.content}}</h4>
+		<button id='upvote' ng-click='TC.upvote(a)'>:)</button><p>{{a.upvotes}}</p>
+		<button id='downvote' ng-click='TC.downvote(a)'>):</button><p>{{a.downvotes}}</p>
+		<div class='commentBox'>
+			<textarea ng-model='TC.new_comment[a._id].content'></textarea>
+			<button ng-click='TC.createComment(a._id, TC.new_comment[a._id])'>Comment</button>
+			<div class='comments' ng-repeat='c in a.comments'>
+				<hr>
+				<a href="#/user/{{c._user._id}}">{{c._user.name}}:</a>
+				<p>{{c.content}}</p>
+			</div>
+		</div>
 	</div>
-</div>

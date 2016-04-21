@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
+var deepPopulate = require('mongoose-deep-populate')(mongoose)
 
 var CommentSchema = new Schema({
 	content: {
@@ -10,9 +11,9 @@ var CommentSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	_topic: {
+	_answer: {
 		type: Schema.Types.ObjectId,
-		ref: 'Topic'
+		ref: 'Answer'
 	},
 	createdAt: {
 		type: Date,

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var AnswerSchema = new Schema({
 	content: {
@@ -7,10 +8,12 @@ var AnswerSchema = new Schema({
 		requred: true
 	},
 	upvotes: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	downvotes: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	_user: {
 		type: Schema.Types.ObjectId,

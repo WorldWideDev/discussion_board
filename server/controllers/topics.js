@@ -52,7 +52,7 @@ module.exports = (function(){
 			})
 		},
 		getOne: function(req,res){
-			Topic.find({_id: req.params.id}).populate('_user').exec(function (err,topic){
+			Topic.findOne({_id: req.params.id}).populate('_user').exec(function (err,topic){
 				res.json(topic)
 			})
 		}

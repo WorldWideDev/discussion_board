@@ -7,6 +7,10 @@ table{
 	thead{
 		background-color: #978D8D;
 	}
+.error{
+	font-weight: bold;
+	color: #FB6969
+}
 #topicForm{
 	width: 500px;
 	margin-left: 50px;
@@ -16,4 +20,20 @@ table{
 	}
 #topicInfo{
 	margin-left: 50px;
+}
+#upvote{
+	display: inline-block;
+	background-color: #8C90EB;
+	margin: 10px;
+}
+#downvote{
+	display: inline-block;
+	background-color: #DA4E4E;
+	margin: 10px;
+}
+.answerBox p{
+	display: inline-block;
+}
+.comments{
+	margin-left: 20px;
 }

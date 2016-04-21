@@ -7,8 +7,12 @@ module.exports = (function(){
 	return {
 		index: function (req,res){
 			console.log('in answer index method');
-			Answer.find({_topic: req.params.id}).populate('_topic').populate('_user').exec(function (err, answers){
-				res.json(answers);
+
+			Topic.findOne({_id: req.params.id})
+			.deepPopulate(['answers', 'answers._user', 'answers.comments', 'answers.comments._user'])
+			.exec(function (err, topic){
+				console.log(topic)
+				res.json(topic);
 			})
 		},
 		create: function (req,res){
@@ -56,6 +60,37 @@ module.exports = (function(){
 					})
 				}
 			})
-		}
+		},
+		upvote: function (req,res){
+			Answer.findOne({_id: req.params.id}, function (err, answer){
+				console.log(answer)
+				answer.upvotes += 1;
+				answer.save(function (err){
+					if(err){
+						console.log('somethings amiss')
+						res.json(err);
+					}else{
+						console.log('upvote success')
+						res.redirect('/answers/index/' + answer._topic)
+					}
+				})
+			})
+		},
+		downvote: function (req,res){
+			Answer.findOne({_id: req.params.id}, function (err, answer){
+				console.log(answer)
+				answer.downvotes += 1;
+				answer.save(function (err){
+					if(err){
+						console.log('somethings amiss')
+						res.json(err);
+					}else{
+						console.log('downvote success')
+						console.log(answer._topic)
+						res.redirect('/answers/index/' + answer._topic)
+					}
+				})
+			})
+		},
 	}
 })()

@@ -34,6 +34,29 @@ myApp.factory('TopicFactory', function ($http){
 			callback(meow)
 		})
 	}
+	factory.upvote = function(answer, callback){
+		$http.post('/answers/upvote/' + answer._id).success(function (meow){
+			callback(meow)
+		})
+	}
+	factory.downvote = function(answer, callback){
+		console.log('in downvote in factory')
+		$http.post('/answers/downvote/' + answer._id).success(function (meow){
+			callback(meow)
+		})
+	}
+	factory.getComments = function(topic,callback){
+		$http.get('/comments/index/' + topic._id).success(function (meow){
+			callback(meow)
+		})
+	}
+	factory.createComment = function(newComment, answer, callback){
+		console.log('in create comment factory');
+		console.log(newComment)
+		$http.post('/comments/create/' + answer._id, newComment).success(function (meow){
+			callback(meow)
+		})
+	}
 	return factory
 })
 myApp.controller('TopicController', function (TopicFactory,UserFactory){
@@ -59,6 +82,10 @@ myApp.controller('TopicController', function (TopicFactory,UserFactory){
 				console.log(self.thisTopic)
 				self.answers = answerQuery;
 			})
+			TopicFactory.getComments(self.thisTopic, function (commentQuery){
+				console.log(commentQuery + ' is comments')
+				self.comments = commentQuery;
+			})
 		})
 	}
 	self.create = function(){
@@ -72,5 +99,25 @@ myApp.controller('TopicController', function (TopicFactory,UserFactory){
 			self.answers = query
 		})
 		self.new_answer = ''
+	}
+	self.upvote = function(answer){
+		TopicFactory.upvote(answer, function (query){
+			self.answers = query
+		})
+		console.log(answer)
+	}
+	self.downvote = function(answer){
+		console.log(answer._user.name)
+		TopicFactory.downvote(answer, function (query){
+			self.answers = query
+		})
+	}
+	self.createComment = function(answer){
+		console.log(answer)
+		console.log(self.new_comment)
+		TopicFactory.createComment(self.new_comment, answer, function (query){
+			self.comments = query
+		})
+		self.new_comment = ''
 	}
 })
