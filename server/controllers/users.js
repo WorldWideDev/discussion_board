@@ -1,13 +1,15 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Comment = mongoose.model('Comment');
-
 module.exports = (function(){
 	return {
 		index: function(req,res){
 			console.log('in user index method');
-			User.find({_id: req.params.id}).populate('topics', 'answers', 'comments').exec(function (err,user){
-				res.json(user)
+			User.findOne({_id: req.params.id}, function (err,user){
+				if(err){
+					res.json(err)
+				}else{
+					res.json(user)
+				}
 			})
 		},
 		create: function(req,res){
