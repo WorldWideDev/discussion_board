@@ -26,8 +26,13 @@ var TopicSchema = new Schema({
 })
 
 var CategorySchema = new Schema({
+	_user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	name: {
-		type: String
+		type: String,
+		required: true
 	}
 })
 

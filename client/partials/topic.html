@@ -1,4 +1,4 @@
-	<h1><a href="">{{TC.thisTopic._user.name}}</a> posted a topic:</h1>
+	<h1><a href="#/user/{{TC.thisTopic._user._id}}">{{TC.thisTopic._user.name}}</a> posted a topic:</h1>
 	<div id='topicInfo'>
 		<h3>{{TC.thisTopic.name}}</h3>
 		<p>{{TC.thisTopic.desc}}</p>
@@ -8,7 +8,7 @@
 	<button ng-click='TC.createAnswer(TC.thisTopic._id)'>Post</button>
 	<div ng-repeat='a in TC.answers' class='answerBox'>
 		<hr>
-		<h4><a href="">{{a._user.name}}:</a> {{a.content}}</h4>
+		<h4><a href="#/user/{{a._user._id}}">{{a._user.name}}:</a> {{a.content}}</h4>
 		<button id='upvote' ng-click='TC.upvote(a)'>:)</button><p>{{a.upvotes}}</p>
 		<button id='downvote' ng-click='TC.downvote(a)'>):</button><p>{{a.downvotes}}</p>
 		<div class='commentBox'>

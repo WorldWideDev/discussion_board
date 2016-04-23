@@ -4,19 +4,15 @@ myApp.controller('TopicController', function ($routeParams,TopicFactory,UserFact
 	var route = $routeParams._id
 	console.log($routeParams)
 	TopicFactory.getOne(route, function (topicQuery){
-		console.log(topicQuery)
 		self.thisTopic = topicQuery
 	})
 	AnswerFactory.index(route, function (topic){
-		console.log(topic)
 		self.answers = topic.answers;
 	})
 	UserFactory.getLogged(function (userQuery){
 		self.curr_user = userQuery
-		console.log(userQuery.name + ' is logged user')
 	})
 	CommentFactory.index(route, function (commentQuery){
-		console.log(commentQuery)
 		self.comments = commentQuery;
 	})
 	self.createAnswer = function(topicId){

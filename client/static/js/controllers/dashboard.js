@@ -10,6 +10,7 @@ myApp.controller('DashboardController', function (TopicFactory,UserFactory){
 		console.log(userQuery.name + ' is logged user')
 	})
 	TopicFactory.getCategories(function (catQuery){
+		console.log(catQuery)
 		self.categories = catQuery
 	})
 	//console.log(self.thisTopic.name + ' is this topic')
@@ -28,36 +29,27 @@ myApp.controller('DashboardController', function (TopicFactory,UserFactory){
 			})
 		})
 	}
-	self.create = function(){
+	self.createTopic = function(){
 		TopicFactory.create(self.new_topic, function (topicQuery){
 			self.topics = topicQuery
 		})
 		self.new_topic = ''
 	}
-// 	self.createAnswer = function(topicId){
-// 		TopicFactory.createAnswer(self.new_answer, topicId, function (query){
-// 			self.answers = query
-// 		})
-// 		self.new_answer = ''
-// 	}
-// 	self.upvote = function(answer){
-// 		TopicFactory.upvote(answer, function (query){
-// 			self.answers = query
-// 		})
-// 		console.log(answer)
-// 	}
-// 	self.downvote = function(answer){
-// 		console.log(answer._user.name)
-// 		TopicFactory.downvote(answer, function (query){
-// 			self.answers = query
-// 		})
-// 	}
-// 	self.createComment = function(answer){
-// 		console.log(answer)
-// 		console.log(self.new_comment)
-// 		TopicFactory.createComment(self.new_comment, answer, function (query){
-// 			self.comments = query
-// 		})
-// 		self.new_comment = ''
-// 	}
+	self.createCat = function(){
+		TopicFactory.createCat(self.new_category, self.user._id, function (catQuery){
+			console.log(catQuery)
+			if(catQuery.message){
+				console.log('in if')
+				self.err = catQuery.message
+			}
+			else if(catQuery.error){
+				console.log('in else if')
+				self.err = catQuery.error
+			}else{
+				console.log('in else')
+				self.categories = catQuery
+			}
+			self.new_category = ''
+		})
+	}
 })

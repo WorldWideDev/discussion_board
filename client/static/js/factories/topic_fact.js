@@ -27,6 +27,11 @@ myApp.factory('TopicFactory', function ($http){
 			callback(meow)
 		})
 	}
+	factory.createCat = function(newCat, userId, callback){
+		$http.post('/topics/createCat/' + userId, newCat).success(function (meow){
+			callback(meow)
+		})
+	}
 	factory.getAnswers = function(topic, callback){
 		$http.get('/answers/index/' + topic._id).success(function (meow){
 			callback(meow)

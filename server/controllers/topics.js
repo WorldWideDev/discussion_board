@@ -46,8 +46,29 @@ module.exports = (function(){
 
 			})
 		},
+		createCat: function(req,res){
+			Category.findOne({name: req.body.name}, function (err,cat){
+				if(cat){
+					res.json({error: 'Category Already Exists'})
+				}else{
+					var new_category = new Category({
+						name: req.body.name,
+						_user: req.params.id
+					})
+					new_category.save(function (err){
+						if(err){
+							res.json(err)
+						}else{
+							res.redirect('/topics/getCategories')
+						}
+					})
+				}
+			})
+		},
 		getCategories: function(req,res){
+			console.log('in get categories')
 			Category.find({}, function (err, categories){
+				console.log(categories)
 				res.json(categories)
 			})
 		},

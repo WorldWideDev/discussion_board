@@ -1,6 +1,17 @@
 *{
 	font-family: monospace;
 }
+.container{
+	margin-top: 38px;
+}
+#navElements{
+	/* position: relative; */
+	margin-top: 13px;
+	margin-left: 10px;
+}
+	.navSep{
+		display: inline-block;
+	}
 table{
 	border: solid;
 }
@@ -15,9 +26,16 @@ table{
 	width: 500px;
 	margin-left: 50px;
 }
-	#topicForm input, select, button, label, textarea{
+	#topicForm select, label, textarea, .newTopIpt{
 		display: block;
 	}
+		#topicBtn{
+			margin-top: 10px;
+			display: block;
+		}
+		#newCatIpt{
+			display: inline-block;
+		}
 #topicInfo{
 	margin-left: 50px;
 }

@@ -28,6 +28,9 @@ module.exports = function(app){
 		console.log(req.body.name + ' is post data')
 		topics.create(req,res);
 	})
+	app.post('/topics/createCat/:id', function (req,res){
+		topics.createCat(req,res)
+	})
 	app.get('/topics/getCategories', function (req,res){
 		topics.getCategories(req,res);
 	})

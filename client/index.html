@@ -16,9 +16,14 @@
 	<title>Discussion Board</title>
 </head>
 <body>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div id='navElements'>
+			<a href="#/dashboard">Dashboard</a><p class='navSep'> | </p><a href="#/">Logout</a>
+		</div>
+	</div>
 	<div class='container'>
-		<a href="#/login">Login Page</a> | <a href="#/dashboard">Dashboard</a> | <a href="#/topic">Topic</a> | <a href="#/user">User</a>
 		<div ng-view=''></div>
 	</div>
+	
 </body>
 </html>
