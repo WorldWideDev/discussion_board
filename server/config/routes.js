@@ -20,6 +20,9 @@ module.exports = function(app){
 	app.get('/users/getLogged', function (req,res){
 		users.getLogged(req,res)
 	})
+	app.get('/users/logout', function (req,res){
+		users.logout(req,res)
+	})
 	app.get('/topics/index', function (req,res){
 		topics.index(req,res);
 	})

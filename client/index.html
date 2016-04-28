@@ -21,8 +21,8 @@
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
-		<div id='navElements'>
-			<a href="#/dashboard">Dashboard</a><p class='navSep'> | </p><a href="#/">Logout</a>
+		<div id='navElements' ng-controller='LoginController as LC'>
+			<a href="#/dashboard">Dashboard</a><p class='navSep'> | </p><a href="" ng-click="LC.logout()">Logout</a>
 		</div>
 	</div>
 	<div class='container'>
@@ -30,7 +30,7 @@
 	</div>
 
 	<div class='footer'>
-		<div class='chat' ng-controller='ChatController as CC'>{{CC}}
+		<div class='chat' ng-controller='ChatController as CC'>
 			<div id='chatBox' ng-show='CC.item==1'>
 				<div id='chatBody'>
 					<div id='chatTxt' ng-repeat='m in CC.messages'>
@@ -40,7 +40,7 @@
 				<input id='chatIpt' type='text' ng-model='CC.new_message.txt'>
 				<button ng-click='CC.post()'>Send</button>
 			</div>
-			<button ng-if='CC.curr_user' id='chatBtn' class='chat pull-right' ng-click='CC.toggle()'>CHAT</button>
+			<button id='chatBtn' class='chat pull-right' ng-click='CC.toggle()'>CHAT</button>
 		</div>
 	</div>
 	

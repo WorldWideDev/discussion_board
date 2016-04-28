@@ -13,6 +13,10 @@ module.exports = (function(){
 				}
 			})
 		},
+		logout: function(req,res){
+			req.session.destroy();
+			res.json({message: 'you have successfully logged out'})
+		},
 		create: function(req,res){
 			console.log('in user create method');
 			User.findOne({name:req.body.name}, function (err, user){

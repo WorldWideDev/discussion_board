@@ -3,15 +3,16 @@ myApp.controller('ChatController', function (ChatFactory,UserFactory,$timeout){
 	self.messages = []
 	self.item = 0
 
-	UserFactory.getLogged(function (userQuery){
-		self.curr_user = userQuery
-		console.log(self.curr_user)
-	})
+	// UserFactory.getLogged(function (userQuery){
+	// 	self.curr_user = userQuery
+	// 	console.log(self.curr_user)
+	// })
 
 	console.log(self)
 	console.log(self.curr_user)
 	var count = 0
 	self.toggle = function(){
+
 		console.log('in toggle')
 		if(count%2 == 0){
 			console.log('even')
@@ -25,11 +26,16 @@ myApp.controller('ChatController', function (ChatFactory,UserFactory,$timeout){
 	}
 	self.post = function(){
 		console.log(self)
-		console.log(self.new_message)
-		socket.emit('message_added', {
-			message: self.new_message, 
-			user: self.curr_user
+		var _message =  self.new_message
+		UserFactory.getLogged(function (userQuery){
+			console.log(_message)
+			self.curr_user = userQuery
+			socket.emit('message_added', {
+				message: _message, 
+				user: self.curr_user
+			})
 		})
+		
 		//console.log(self.messages)
 		self.new_message = ''
 	}
