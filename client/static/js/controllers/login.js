@@ -1,5 +1,6 @@
 myApp.controller('LoginController', function ($location, UserFactory){
 	self = this;
+	UserFactory.logout()
 	self.create = function(){
 		UserFactory.create(self.new_user, function (userQuery){
 			self.users = userQuery

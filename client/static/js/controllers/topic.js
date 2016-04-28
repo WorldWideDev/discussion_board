@@ -1,8 +1,11 @@
-myApp.controller('TopicController', function ($routeParams,TopicFactory,UserFactory,AnswerFactory,CommentFactory){
+myApp.controller('TopicController', function ($routeParams,TopicFactory,UserFactory,AnswerFactory,CommentFactory,$scope){
+	socket.emit('test', {sup: 'sup'})
+	socket.on('test_back', function (data){
+		console.log(data)
+	})
 	self = this;
-	//$location.url('/dashboard')
+	console.log('topic comptroller')
 	var route = $routeParams._id
-	console.log($routeParams)
 	TopicFactory.getOne(route, function (topicQuery){
 		self.thisTopic = topicQuery
 	})
@@ -22,17 +25,26 @@ myApp.controller('TopicController', function ($routeParams,TopicFactory,UserFact
 		self.new_answer = ''
 	}
 	self.upvote = function(answer){
-		TopicFactory.upvote(answer, function (query){
-			self.answers = query.answers;
-		})
 		console.log(answer)
+		socket.emit('upvote', {upvoted: answer})
 	}
+
+	socket.on('upvoting', function (data){
+		AnswerFactory.index(route, function (topic){
+			self.answers = topic.answers;
+		})
+	})
+
 	self.downvote = function(answer){
 		console.log(answer._user.name)
-		TopicFactory.downvote(answer, function (query){
-			self.answers = query.answers;
-		})
+		socket.emit('downvote', {downvoted: answer})
+		
 	}
+	socket.on('downvoting', function (data){
+		AnswerFactory.index(route, function (topic){
+			self.answers = topic.answers;
+		})
+	})
 	self.createComment = function(answerId, newComment){
 		console.log(answerId)
 		console.log(newComment)
@@ -41,4 +53,5 @@ myApp.controller('TopicController', function ($routeParams,TopicFactory,UserFact
 		})
 		self.new_comment = ''
 	}
+
 })

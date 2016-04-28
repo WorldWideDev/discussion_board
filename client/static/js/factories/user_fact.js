@@ -17,5 +17,10 @@ myApp.factory('UserFactory', function ($http){
 			callback(meow)
 		})
 	}
+	factory.logout = function(callback){
+		$http.get('/users/logout').success(function (meow){
+			callback(meow)
+		})
+	}
 	return factory
 })

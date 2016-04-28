@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp', ['ngRoute'])
 console.log('in angular config')
+var socket = io.connect();
 myApp.config(function ($routeProvider){
 	$routeProvider
 	.when('/', {

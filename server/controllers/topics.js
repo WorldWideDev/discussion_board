@@ -13,7 +13,6 @@ module.exports = (function(){
 			})
 		},
 		create: function(req,res){
-			console.log(req.session)
 			User.find({name: req.session.name}, function (err, query){
 				if(err){
 					json(err)
@@ -68,7 +67,6 @@ module.exports = (function(){
 		getCategories: function(req,res){
 			console.log('in get categories')
 			Category.find({}, function (err, categories){
-				console.log(categories)
 				res.json(categories)
 			})
 		},

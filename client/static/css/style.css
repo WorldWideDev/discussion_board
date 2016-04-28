@@ -3,6 +3,9 @@
 }
 .container{
 	margin-top: 38px;
+	margin-bottom: 50px;
+	height: 84%;
+	overflow: auto;
 }
 #navElements{
 	/* position: relative; */
@@ -12,6 +15,41 @@
 	.navSep{
 		display: inline-block;
 	}
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #D6D6D6;
+}
+	#chatBtn{
+		vertical-align: top;
+	}
+	#chatBox{
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		background-color: #D0C2C2;
+		display: inline-block;
+		margin-top: -299px;
+		margin-left: 62%;
+	}
+		#chatBody{
+			border: solid 1px;
+			height: 274px;
+			overflow: auto;
+		}
+		#chatIpt{
+			position: absolute;
+		    bottom: 0;
+		}
+		#chatBox button{
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			margin-right: 80px;
+		}
 table{
 	border: solid;
 }

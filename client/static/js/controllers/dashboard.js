@@ -1,26 +1,26 @@
 myApp.controller('DashboardController', function (TopicFactory,UserFactory){
 	console.log('hi ur in new refactored')
 	self = this;
-	//$location.url('/dashboard')
 	TopicFactory.index(function (topicQuery){
 		self.topics = topicQuery
 	})
 	UserFactory.getLogged(function (userQuery){
 		self.user = userQuery
-		console.log(userQuery.name + ' is logged user')
+		console.log(self.user)
+		socket.emit('user_entered', {user: self.user.name})
+
+		console.log(userQuery + ' is logged user')
 	})
 	TopicFactory.getCategories(function (catQuery){
 		console.log(catQuery)
 		self.categories = catQuery
 	})
 	//console.log(self.thisTopic.name + ' is this topic')
-
 	
 	self.getOne = function(topic){
 		TopicFactory.getOne(topic, function (query){
 			self.thisTopic = query[0]
 			TopicFactory.getAnswers(self.thisTopic, function (answerQuery){
-				console.log(self.thisTopic)
 				self.answers = answerQuery;
 			})
 			TopicFactory.getComments(self.thisTopic, function (commentQuery){
@@ -52,4 +52,5 @@ myApp.controller('DashboardController', function (TopicFactory,UserFactory){
 			self.new_category = ''
 		})
 	}
+
 })
